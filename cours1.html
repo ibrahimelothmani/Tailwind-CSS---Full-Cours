@@ -1,0 +1,82 @@
+<!-- 
+
+    1 - first (THE CDN):
+    if you have a small project Or if you want to develop or testing
+    you can use the CDN by including the cdn script in the top of the code after the meta tag
+
+    2. second (using PostCSS):
+    the PostCSS is used when you have a build tools like 
+    webpack, Rolup, Vite and Parcel
+
+    3. third (TailwindCLI):
+    The simplest and fastest way to get up and running with Tailwind CSS from scratch is with the Tailwind CLI tool.
+    The CLI is also available as a standalone executable if you want to use it without installing Node.js.
+
+    So For our Project we gonna use TailwindCLI:
+
+    1. in the terminal in our code editor:
+
+    npm init -y => create package.json
+    npm install -D tailwindcss or npm i -D tailwindcss => install a folder node_modules
+    npx tailwindcss init => create a config file (tailwindcss.config.js)
+
+    2. In the tailwind.config.js :
+
+    /** @type {import('tailwindcss').Config} */
+
+    module.exports = {
+        content: ["./src/**/*.{html,js}"], => here we just put content: ['./*.html'],
+        theme: {
+            extend: {},
+        },
+        plugins: [],
+    }
+
+    3. Create a file Named input.css
+
+    put in the file this codes:
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    4. install the Extension : PostCSS Language Support
+
+    5. tap this command in the terminal:
+
+    npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+
+    thats mean everytime I will run this command ?
+    
+    => instand of this we can juste do this configuration
+
+    Solution :
+
+    In the package.json :
+
+    "script" : {
+        "build": "tailwindcss -i ./input.css -o ./css/style.css"
+        "watch": "tailwindcss -i ./input.css -o ./css/style.css --watch"
+    }
+
+    6. In the terminal we put :
+
+    npm run build => It will create a folder named css/style.css
+    
+    7. Include this file in our index.html:
+
+    <link rel="stylesheet" href="css/style.css">
+
+    8. In the terminal we put :
+
+    npm run watch => to WATCH this file
+
+    9. Go Live => Live Server
+
+    10. You Can Start building your project
+
+    11. If you want to stop your terminal use the commant => CTRL + C
+
+    12. but everytime you should put in the terminal => npm run watch => to watch your project
+    
+ -->

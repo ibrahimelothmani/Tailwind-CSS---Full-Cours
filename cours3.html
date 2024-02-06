@@ -1,0 +1,150 @@
+<!-- 
+
+    I. Optiaonal Webpack && PostCSS Environment
+
+    1. PostCSS => a tool for transforming CSS with JavaScript => https://postcss.org/
+
+    2. Create a file then open it with live server
+
+    3. in the terminal run :
+    npm init -y
+    npm i -D talwindcss
+    npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader postcss postcss-loader postcss-preset-env
+
+    4. Create folder named src :
+    create a file in this folder named index.js
+
+    5. Create a file named webpack.config.js:
+
+    5.1. so here we put this:
+
+    module.exports= {
+        mode: "development"
+    }
+
+    5.2. then in the package.js we create in the script tag :
+        "script" : {
+        "build": "webpack"
+    }
+
+    5.3. then using our terminal we put => npm run build => it will create
+    a folder named dist contain a file named main.js => the bindle javascript file
+
+    5.4. => we delete this folder => I want to build our folder default
+
+    5.5. we go back to the webpack.config.js:
+
+        const path = require('path')
+
+        module.exports= {
+        mode: 'development',
+        entry: './src/index.js',
+        output: {
+            path: path.resolve(_dirname, 'dist'),
+            filname: 'bundle.js'
+        },
+
+    }
+
+    5.6. Go back to the terminal => npm run build
+    => it will create a folder named dist has a file named bundle.js
+
+    6. In the dist folder we create our html file, then we include the bundle folder
+    =><script src="bundle.js"></script>
+
+    7. Instand of USING npm run build every time we gonna do this:
+    In the package.json:
+
+            "script" : {
+        "build": "webpack",
+        "dev": "webpack server",
+    }
+
+    then in webpack.config.js we add this :
+    
+    const path = require('path')
+
+        module.exports= {
+        mode: 'development',
+        entry: './src/index.js',
+        output: {
+            path: path.resolve(_dirname, 'dist'),
+            filname: 'bundle.js'
+        },
+
+  
+    devServer: {
+        static: {
+            directory: path.resolve(_dirname, 'dist'),
+        },
+        port: 3000,
+        open: true,
+        hot: true,
+        compress: true,
+        historyApiFallback: true,
+
+    },
+  }
+
+  8. Then in our terminal we run => npm run dev 
+
+  9. then any thing we write in the index.js it will show in console in our browser
+  without runing npm run build in everytime we write something new in our index.js
+
+  10. IN our terminal we put this: npx tailwindcss init
+  => it will give us a file named tailwind.config.js
+
+      module.exports = {
+        content: ["./dist/*.{html,js}"], => here we just put content: ['./*.html'],
+        theme: {
+            extend: {},
+        },
+        plugins: [],
+    }
+    
+  
+  11. In the root we create postcss.config.js
+
+  const = tailwindcss = require('tailwindcss');
+
+  module.exports = {
+    plugins: [
+    'postcss-preset-env',
+    tailwindcss
+    ],
+  };
+
+  12. Then in the webpack.config.js we add this :
+
+  module: {
+    rules: [
+    {
+        test : /\.css$/i
+        include: path.resolve(_dirname, 'src'),
+        use: ['style-loader', 'css-loader', postcss-loader],
+    },
+    ],
+  },
+
+  13. then in the src folder we create a file named style.css
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+
+  14. Then in the index.js we delete everything and we put this :
+
+  import './style.css'
+
+  15. Then we run => npm run dev
+
+  16. we do this just a once the we copie it the project you will build it 
+  => you dont go to do this everytime you build a project 
+
+
+
+
+
+
+ -->

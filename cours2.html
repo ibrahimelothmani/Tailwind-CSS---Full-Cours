@@ -1,0 +1,105 @@
+<!-- 
+    1. Use the CDN or duplicate your project folder
+
+    2. Open with VS code
+
+    3. npm run watch 
+
+    4. Go Live
+
+    5. Directives:
+
+    are custom Tailwind-specific at-rules you can use in your CSS 
+    that offer special functionality for Tailwind CSS projects.
+    => Use the @tailwind directive to insert Tailwind’s base, 
+    components, utilities and variants styles into your CSS.
+
+    5.1. @layer :
+    
+    Use the @layer directive to tell Tailwind which “bucket” a set of custom styles belong to.
+    Valid layers are base, components, and utilities.
+
+    => the problem is there is so many css class in your html files
+    so we put classes in the input.css by using @layer
+
+    EXAMPLE:
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+   /*  
+   @layer base {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+*/
+
+OR => the best way is to use  @apply :
+Use @apply to inline any existing utility classes into your own custom CSS.
+This is useful when you need to write custom CSS (like to override the styles in a third-party library) 
+but still want to work with your design tokens and use the same syntax you’re used to using in your HTML.
+
+@layer base {
+  h1 {
+    @apply text-2xl; => for all the h1 tag.
+  }
+  h2 {
+    @apply text-xl; => for all the h2 tag.
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+}
+
+=> this add will be showing automaticly in the style.css file
+
+5.2. The theme :
+
+in the config file (tailwind.config.js) :
+
+theme:{
+  extend: {
+    spacing: {
+      128: '32rem',
+      // we can put what ever we want , the spacing here is just an example
+    },
+  },
+},
+
+so in the html file we add a text in the <p> tag and we give him a class
+  then in the input.css file we manchen this class and we give him the "spacing in the theme"
+  by using 
+  @apply bg-green-200;
+  height: theme('spacing.128'); // example
+
+
+6. the media query:
+
+we can put in the input.css file the min and the max width by using this:
+
+@media screen(xsm,sm,md,lg,xl,2xl){
+  body{
+    @apply bg-black text-white; => just an example
+  }
+}
+
+
+
+ -->
